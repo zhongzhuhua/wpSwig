@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="zh-cn">
+
+<head>
+  <meta charset="utf-8" />
+  <title>{% block title %}平安金融科技{% endblock %}</title>
+	{% block meta %}{% include "meta.html" %}{% endblock %} 
+  {% if (env === "production") %}
+  	<link rel="stylesheet" href="./css/{{slug}}.css"> 
+  {% endif %}
+</head>
+
+<body class={{slug}}>
+  {% block content %}{% endblock %}
+  {% block scripts %}{% endblock %}
+
+  {% if (env !== "production" && reload === true) %}
+    <script src="/reload/reload.js"></script>
+  {% endif %}
+</body>
+
+</html>

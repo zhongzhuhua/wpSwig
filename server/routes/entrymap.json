@@ -1,0 +1,4 @@
+{
+  "jquery": "./client/js/vendors/jquery",
+  "index": ["./client/js/index", "webpack/hot/dev-server", "webpack-hot-middleware/client?http://localhost:3000"]
+}

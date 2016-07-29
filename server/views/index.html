@@ -1,0 +1,23 @@
+{% extends "./_inc/layout.html" %}
+
+{% block content %}
+{{title}}
+<section>
+  <ul class="">
+    <li><a href="/recommend">推荐有礼</a></li>
+    <li><a href="/recommend">我的推荐</a></li>
+    <li><a href="/recommend/myrecommend">我的推荐</a></li>
+    <li><a href="/prize">我的奖励</a></li>
+    <li>======= 抽奖项目 =========</li>
+    <li><a href="/drawprize/flipcard">翻牌游戏</a></li>
+    <li><a href="/drawprize/scratchcard">刮刮卡</a></li>
+    <li><a href="/drawprize/smashingeggs">砸金蛋</a></li>
+    <li><a href="/drawprize/treasurebox">藏宝箱</a></li>
+    <li><a href="/drawprize/turntable">大转盘</a></li>
+  </ul>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script type="text/javascript" src="/{{slug}}.js"></script>
+{% endblock %}
