@@ -7,9 +7,9 @@
   "main": "app.js",
   "scripts": {
     "test": "cross-env NODE_ENV=dev supervisor -w server,app.js,webpack.dev.config.js app",
-    "pack": "webpack -p & cross-env NODE_ENV=production node app.js",
     "start": "webpack & cross-env NODE_ENV=production node app.js",
-    "production": "cross-env NODE_ENV=production node app.js"
+    "view": "cross-env NODE_ENV=production node app.js",
+    "build": "webpack -p & cross-env NODE_ENV=production node app.js"
   },
   "devDependencies": {
     "cross-env": "2.0.0",
@@ -26,11 +26,8 @@
     "extract-text-webpack-plugin": "1.0.1"
   },
   "dependencies": {
-    "cross-env": "2.0.0",
     "express": "4.13.4",
-    "swig": "1.4.2",
-    "webpack": "1.13.1",
-    "transfer-webpack-plugin": "0.1.4"
+    "swig": "1.4.2"
   },
   "license": "MIT"
 }
