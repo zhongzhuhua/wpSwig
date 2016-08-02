@@ -1,9 +1,21 @@
-let path = require('path');
-let webpack = require('webpack');
-const entryMap = require('./server/routes/entrymap.json');
+var path = require('path');
+var webpack = require('webpack');
+var entryMap = require('./server/routes/entrymap.json');
+
+// 复制文件
+var TransferWebpackPlugin = require('transfer-webpack-plugin');
+var pluginsCopy = new TransferWebpackPlugin([
+  { from: './client/libs', to: './libs' }
+], path.resolve(__dirname));
 
 module.exports = {
-  
+
+  // 插件
+  plugins: [
+    pluginsCopy,
+    new webpack.optimize.CommonsChunkPlugin('common.js')
+  ],
+
   // 脚本入口文件配置
   entry: entryMap,
 
@@ -18,7 +30,11 @@ module.exports = {
     // 入口根文件夹
     root: path.resolve(process.cwd(), 'client'),
     // 默认文件后缀
-    extensions: ['', '.js', '.json', '.scss']
+    extensions: ['', '.js', '.json', '.scss'],
+    // 别名配置
+    alias: {
+      gm: 'js/vendors/global'
+    }
   },
 
   // 全局插件

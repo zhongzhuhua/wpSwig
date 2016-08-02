@@ -12,11 +12,12 @@
 
 <body class={{slug}}>
   {% block content %}{% endblock %}
-  {% block scripts %}{% endblock %}
-
-  {% if (env !== "production" && reload === true) %}
-    <script src="/reload/reload.js"></script>
-  {% endif %}
 </body>
+
+<script src="/common.js"></script>
+{% block scripts %}{% endblock %}
+{% if (env !== "production" && reload === true) %}
+  <script src="/reload/reload.js"></script>
+{% endif %}
 
 </html>
