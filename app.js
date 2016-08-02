@@ -10,9 +10,6 @@ var isDev = process.env.NODE_ENV !== 'production';
 var port = 3000;
 process.env.PORT = port;
 
-// 配置静态文件服务器
-app.use(express.static(__dirname + '/public'));
-
 // 设置视图文件夹，设置视图后缀名，设置 html 文件由 swig 模板引擎管理
 app.set('views', path.join(__dirname, './server/views'));
 app.set('view engine', 'html');
@@ -63,8 +60,12 @@ if (isDev) {
   var reload = require('reload');
   reload(server, app);
 } else {
+
+  // 配置静态文件服务器
+  app.use(express.static(__dirname + '/public'));
+
   server.listen(port, '0.0.0.0', function onStart(err) {
-    if(err) {
+    if (err) {
       console.log(err);
     }
     console.info('Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);

@@ -6,9 +6,12 @@ let publicPath = 'http://localhost:' + process.env.PORT + '/';
 
 // entry 
 const entryMap = require('./server/routes/entrymap.json');
-for(var key in entryMap) {
+for (var key in entryMap) {
   entryMap[key].push('webpack-hot-middleware/client?reload=true');
 };
+
+// 第三方插件配置，需要配置 resolve.alias 使用，这个配置是为了 script src="" 不报错
+entryMap['libs/jquery'] = ['./public/libs/jquery'];
 
 module.exports = {
   // 插件
@@ -22,15 +25,18 @@ module.exports = {
   // 打包后，脚本文件输出配置
   output: {
     filename: '[name].js', //html(或者模板)页面将引入的是这个js，这里的name就是上面entry中的K值
-    path: '/client/js/'
+    path: '/public/'
   },
 
   // 其他方案入口，webpack 从该配置进入查找所有文件
   resolve: {
     // 入口根文件夹
-    root: path.resolve(process.cwd(), 'client'),
+    root: path.resolve(process.cwd(), 'public'),
     // 默认文件后缀
-    extensions: ['', '.js', '.json', '.scss']
+    extensions: ['', '.js', '.json', '.scss'],
+    alias: {
+      jquery: 'libs/jquery'
+    }
   },
 
   // 全局插件

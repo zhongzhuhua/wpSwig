@@ -10,15 +10,20 @@ module.exports = {
   // 打包后，脚本文件输出配置
   output: {
     filename: '[name].js', //html(或者模板)页面将引入的是这个js，这里的name就是上面entry中的K值
-    path: './public/js/'
+    path: './public/'
   },
 
   // 其他方案入口，webpack 从该配置进入查找所有文件
   resolve: {
     // 入口根文件夹
-    root: path.resolve(process.cwd(), 'public'),
+    root: path.resolve(process.cwd(), 'client'),
     // 默认文件后缀
     extensions: ['', '.js', '.json', '.scss']
+  },
+
+  // 全局插件
+  externals: {
+    jquery: 'jQuery'
   },
 
   module: {
