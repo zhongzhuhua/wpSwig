@@ -6,7 +6,9 @@
   "author": "ice",
   "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=dev supervisor -w server,app.js,webpack.dev.config.js app"
+    "test": "cross-env NODE_ENV=dev supervisor -w server,app.js,webpack.dev.config.js app",
+    "build": "webpack",
+    "start": "cross-env NODE_ENV=production node app.js webpack"
   },
   "devDependencies": {
     "cross-env": "2.0.0",

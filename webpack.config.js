@@ -3,11 +3,7 @@ let webpack = require('webpack');
 const entryMap = require('./server/routes/entrymap.json');
 
 module.exports = {
-  // 插件
-  plugins: [
-    
-  ],
-
+  
   // 脚本入口文件配置
   entry: entryMap,
 
@@ -18,12 +14,12 @@ module.exports = {
   },
 
   // 其他方案入口，webpack 从该配置进入查找所有文件
-  // resolve: {
-  //   // 入口根文件夹
-  //   root: path.resolve(process.cwd(), 'client/js/'),
-  //   // 默认文件后缀
-  //   extensions: ['', '.js', '.json', '.scss']
-  // },
+  resolve: {
+    // 入口根文件夹
+    root: path.resolve(process.cwd(), 'public'),
+    // 默认文件后缀
+    extensions: ['', '.js', '.json', '.scss']
+  },
 
   module: {
     //加载器配置
