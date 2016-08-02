@@ -9,6 +9,9 @@ var isDev = process.env.NODE_ENV !== 'production';
 var port = isDev ? 3000 : process.env.PORT;
 process.env.PORT = port;
 
+// 配置静态文件服务器
+app.use(express.static(__dirname));
+
 // 设置视图文件夹，设置视图后缀名，设置 html 文件由 swig 模板引擎管理
 app.set('views', path.join(__dirname, './server/views'));
 app.set('view engine', 'html');

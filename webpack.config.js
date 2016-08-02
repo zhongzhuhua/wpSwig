@@ -1,51 +1,37 @@
-var webpack = require('webpack');
-// js css 热更新
-var commonHot = new webpack.HotModuleReplacementPlugin();
+let path = require('path');
+let webpack = require('webpack');
+const entryMap = require('./server/routes/entrymap.json');
 
-if (process.env.NODE_ENV == 'test') {
+module.exports = {
+  // 插件
+  plugins: [
+    
+  ],
 
-  module.exports = {
-    // 插件
-    plugins: [commonHot],
+  // 脚本入口文件配置
+  entry: entryMap,
 
-    // 脚本入口文件配置
-    entry: [
-      'webpack/hot/dev-server',
-      'webpack-dev-server/client?http://localhost:8080',
-      './index.js'
-    ],
+  // 打包后，脚本文件输出配置
+  output: {
+    filename: '[name].js', //html(或者模板)页面将引入的是这个js，这里的name就是上面entry中的K值
+    path: './public/js/'
+  },
 
-    // 脚本文件输出配置
-    output: {
-      filename: 'index.js'
-    }
-  };
+  // 其他方案入口，webpack 从该配置进入查找所有文件
+  // resolve: {
+  //   // 入口根文件夹
+  //   root: path.resolve(process.cwd(), 'client/js/'),
+  //   // 默认文件后缀
+  //   extensions: ['', '.js', '.json', '.scss']
+  // },
 
-} else {
-
-  module.exports = {
-    // 脚本入口文件配置
-    entry: {
-      'global': './jquery.js',
-      'index': './index.js'
-    },
-
-    // 脚本文件输出配置
-    output: {
-      path: './assets',
-      filename: '[name].js'
-    },
-
-    // 加载配置
-    module: {
-      loaders: [{
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      }, {
-        test: /\.html$/,
-        loader: 'raw-loader'
-      }]
-    }
-  };
-  
-}
+  module: {
+    //加载器配置
+    loaders: [
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
+      //{ test: /\.js$/, loader: 'jsx-loader?harmony' },
+      { test: /\.scss$/, loader: 'style!css!sass?sourceMap' },
+      //{ test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
+    ]
+  },
+};

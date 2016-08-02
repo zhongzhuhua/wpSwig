@@ -1,4 +1,5 @@
 {
-  "jquery": "./client/js/vendors/jquery",
-  "index": ["./client/js/index", "webpack/hot/dev-server", "webpack-hot-middleware/client?http://localhost:3000"]
+  "index": ["./client/js/index"],
+  "hello": ["./client/js/hello"],
+  "main":  ["./client/js/main"]
 }

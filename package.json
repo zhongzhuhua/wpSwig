@@ -3,8 +3,10 @@
   "description": "webpack swig study",
   "version": "1.0.0",
   "private": true,
+  "author": "ice",
+  "main": "app.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=dev supervisor -w server,app.js,webpack.*.js app"
+    "start": "cross-env NODE_ENV=dev supervisor -w server,app.js,webpack.dev.config.js app"
   },
   "devDependencies": {
     "cross-env": "2.0.0",
@@ -14,7 +16,11 @@
     "webpack": "1.13.1",
     "webpack-dev-middleware": "1.6.1",
     "webpack-hot-middleware": "2.12.2",
-    "reload": "1.0.1"
+    "reload": "1.0.1",
+    "style-loader": "0.13.1",
+    "sass-loader": "4.0.0",
+    "css-loader": "0.23.1",
+    "extract-text-webpack-plugin": "1.0.1"
   },
   "dependencies": {
   },

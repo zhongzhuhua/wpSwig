@@ -1,5 +1,3 @@
-function ice(argument) {
-  console.log('zhong34');
-};
+console.log('index');
 
-ice();
+require('js/hello');
