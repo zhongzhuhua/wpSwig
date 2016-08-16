@@ -1,21 +1,7 @@
-@charset "utf-8" 
+@charset "utf-8";
 
-@import "_inc/mixins" 
-@import "_inc/variables" 
+@import "common.scss";
 
-body,
-input,
-button,
-textarea {
-  font-family: $g-font-family;
-  border: none;
-  outline: none;
-}
-
-.clear {
-  @include clearfix;
-}
-
-.inline-block {
-  @include inline-block(middle);
+.index {
+    background: $g-bgcolor;
 }
