@@ -1,7 +1,7 @@
-@charset "utf-8";
+@charset 'utf-8';
 
-@import "common.scss";
+@import 'common.scss';
 
 .index {
-    background: $g-bgcolor;
+    color: red !important;
 }

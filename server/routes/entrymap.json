@@ -1,6 +1,5 @@
 {
   "index": ["./client/js/index"],
   "hello": ["./client/js/hello"],
-  "main": ["./client/js/main"],
-  "test": ["./client/js/test"]
+  "user/index": ["./client/js/user/index"]
 }

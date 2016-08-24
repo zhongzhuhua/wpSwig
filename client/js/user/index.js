@@ -1,10 +1,10 @@
-console.log('index');
+console.log('user index');
 
-require('./../scss/index.scss');
+require('./../../scss/index.scss');
 
 var gm = require('gm');
 var $ = require('jquery');
-require('./hello');
+require('./../hello');
 
 $(function(argument) {
   console.log('jquery init');

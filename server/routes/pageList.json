@@ -1,0 +1,23 @@
+[{
+  "route": "/",
+  "render": "index",
+  "data": {
+    "title": "首页",
+    "slug": "index"
+  }
+}, {
+  "route": "/list",
+  "render": "list",
+  "data": {
+    "title": "列表",
+    "slug": "list"
+  }
+}, {
+  "route": "/user/index",
+  "render": "user/index",
+  "data": {
+    "title": "用户首页",
+    "slug": "user/index",
+    "clazz": "user-index"
+  }
+}]

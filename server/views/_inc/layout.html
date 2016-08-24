@@ -4,20 +4,22 @@
 <head>
   <meta charset="utf-8" />
   <title>{% block title %}平安金融科技{% endblock %}</title>
-	{% block meta %}{% include "meta.html" %}{% endblock %} 
-  {% if (env === "production") %}
-  	<link rel="stylesheet" href="./css/{{slug}}.css"> 
+  {% block meta %} {% include "meta.html" %} {% endblock %} 
+  {% if (env == null or env === "production") %}
+  <link rel="stylesheet" href="./css/{{slug}}.css"> 
   {% endif %}
 </head>
-
-<body class={{slug}}>
-  {% block content %}{% endblock %}
+  
+<body class="{{clazz}}">
+  {% block content %} {% endblock %}
 </body>
-
-<script src="/common.js"></script>
-{% block scripts %}{% endblock %}
-{% if (env !== "production" && reload === true) %}
-  <script src="/reload/reload.js"></script>
+<script src="/js/common.js"></script>
+{% block scripts %}
+<script src="/libs/jquery.js"></script>
+<script src="/{{slug}}.js"></script>
+{% endblock %} 
+{% if (env !== "production" and reload === true) %}
+<script src="/reload/reload.js"></script>
 {% endif %}
 
 </html>

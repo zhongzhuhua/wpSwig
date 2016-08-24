@@ -8,12 +8,13 @@
   "scripts": {
     "test": "cross-env NODE_ENV=dev supervisor -w server,app.js,webpack.dev.config.js app",
     "start": "webpack & cross-env NODE_ENV=production node app.js",
-    "view": "cross-env NODE_ENV=production node app.js",
-    "build": "webpack -p & cross-env NODE_ENV=production node app.js"
+    "build": "webpack",
+    "prod": "webpack -p"
   },
   "devDependencies": {
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
+    "del": "^2.2.2",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^1.0.1",
     "node-sass": "^3.8.0",

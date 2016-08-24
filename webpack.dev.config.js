@@ -1,8 +1,9 @@
 var path = require('path');
 var webpack = require('webpack');
+var utils = require('./utils');
 
 // entry 
-var entryMap = require('./server/routes/entrymap.json');
+var entryMap = utils.getEntryMap();
 for (var key in entryMap) {
   entryMap[key].push('webpack-hot-middleware/client?reload=true');
 };
@@ -14,7 +15,7 @@ module.exports = {
   // 插件
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.optimize.CommonsChunkPlugin('common.js')
+    new webpack.optimize.CommonsChunkPlugin('js/common.js')
   ],
 
   // 脚本入口文件配置
@@ -29,7 +30,7 @@ module.exports = {
   // 其他方案入口，webpack 从该配置进入查找所有文件
   resolve: {
     // 入口根文件夹
-    root: path.resolve(process.cwd(), 'client'),
+    root: path.resolve(process.cwd(), 'client/'),
     // 默认文件后缀
     extensions: ['', '.js', '.json', '.scss'],
     // 配置别名
@@ -43,9 +44,7 @@ module.exports = {
     //加载器配置
     loaders: [
       { test: /\.css$/, loader: 'style-loader!css-loader' },
-      //{ test: /\.js$/, loader: 'jsx-loader?harmony' },
-      { test: /\.scss$/, loader: 'style!css!sass?sourceMap' },
-      //{ test: /\.(png|jpg)$/, loader: 'url-loader?limit=8192' }
+      { test: /\.scss$/, loader: 'style!css!sass?sourceMap' }
     ]
   },
 };

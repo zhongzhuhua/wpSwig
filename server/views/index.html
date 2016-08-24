@@ -1,18 +1,11 @@
-{% extends "./_inc/layout.html" %}
+{% extends "_inc/layout.html" %} 
 
-{% block content %}
+{% block content %} 
 {{title}}
 <section>
   <ul>
-    <li><a href="/recommend">推荐有礼</a></li>
-    <li><a href="/recommend">我的推荐</a></li>
-    <li><a href="/recommend/myrecommend">我的推荐</a></li>
-    <li><a href="/prize">我的奖励</a></li>
+    <li><a href="/user/index">用户首页</a></li>
+    <li><a href="/list">列表</a></li>
   </ul>
 </section>
-{% endblock %}
-
-{% block scripts %}
-<script src="/libs/jquery.js"></script>
-<script src="/{{slug}}.js"></script>
 {% endblock %}

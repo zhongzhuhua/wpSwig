@@ -7,13 +7,18 @@ var swig = require('swig');
 var app = express();
 var isDev = process.env.NODE_ENV !== 'production';
 // var port = isDev ? 3000 : process.env.PORT;
-var port = 3000;
+var port = 4000;
 process.env.PORT = port;
 
 // 设置视图文件夹，设置视图后缀名，设置 html 文件由 swig 模板引擎管理
 app.set('views', path.join(__dirname, './server/views'));
 app.set('view engine', 'html');
 app.engine('html', swig.renderFile);
+
+// 管理视图文件，设置之后， HTML有修改，刷新才能有效果
+swig.setDefaults({
+  cache: false
+});
 
 // 全局配置，提供给 nodejs 使用，包括模板引擎也可以使用
 app.locals.env = process.env.NODE_ENV || 'dev';
@@ -40,7 +45,7 @@ if (isDev) {
   // 链接 webpack 服务器
   app.use(webpackDevMiddleware(compiler, {
     hot: true,
-    noInfo: false,
+    noInfo: true,
     inline: true,
     stats: {
       cached: false,

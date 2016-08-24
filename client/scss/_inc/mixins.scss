@@ -1,11 +1,11 @@
 @mixin clearfix {
-    content: ' ';
-    display: block;
-    clear: both;
-    overflow: hidden;
+  content: ' ';
+  display: block;
+  clear: both;
+  overflow: hidden;
 }
 
 @mixin inline-block($align: auto) {
-    display: inline-block;
-    vertical-align: $align;
+  display: inline-block;
+  vertical-align: $align;
 }
