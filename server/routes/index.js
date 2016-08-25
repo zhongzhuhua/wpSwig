@@ -10,8 +10,8 @@ var pageList = require('./pagelist.json');
 module.exports = (app) => {
 
   Array.from(pageList, (pageInfo) => {
-    app.use(router.get(pageInfo.route, function(req, res, next) {
-      res.render(pageInfo.render, pageInfo.data);
+    app.use(router.get(pageInfo.route, function(req, res, next) {  
+      res.render(pageInfo.render + '.html', pageInfo.data);
     }));
 
     return pageInfo;

@@ -5,21 +5,35 @@
   <meta charset="utf-8" />
   <title>{% block title %}平安金融科技{% endblock %}</title>
   {% block meta %} {% include "meta.html" %} {% endblock %} 
-  {% if (env == null or env === "production") %}
-  <link rel="stylesheet" href="./css/{{slug}}.css"> 
+  {% if slug != null and slug != '' %}
+  {% if env == null or env == "production" %}
+  <link rel="stylesheet" href="/css/{{slug}}.css">
+  {% endif %}
   {% endif %}
 </head>
   
 <body class="{{clazz}}">
   {% block content %} {% endblock %}
 </body>
-<script src="/js/common.js"></script>
+{% if commonjs == null %}
+  <script src="/js/common.js"></script>
+{% else %}
+  <script src="/js/{{commonjs}}"></script>
+{% endif %}
+
 {% block scripts %}
-<script src="/libs/jquery.js"></script>
-<script src="/{{slug}}.js"></script>
+  <script src="/libs/jquery.js"></script>
+  {% if (slug != null and slug != '') %}
+    {% if (env == null or env === "production") %}
+    <script src="/js/{{slug}}.js"></script>
+    {% else %}
+    <script src="/{{slug}}.js"></script>
+    {% endif %}
+  {% endif %}
 {% endblock %} 
+
 {% if (env !== "production" and reload === true) %}
-<script src="/reload/reload.js"></script>
+  <script src="/reload/reload.js"></script>
 {% endif %}
 
 </html>

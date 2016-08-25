@@ -7,16 +7,18 @@
   "main": "app.js",
   "scripts": {
     "test": "cross-env NODE_ENV=dev supervisor -w server,app.js,webpack.dev.config.js app",
-    "start": "webpack & cross-env NODE_ENV=production node app.js",
-    "build": "webpack",
-    "prod": "webpack -p"
+    "build": "cross-env NODE_ENV=view webpack",
+    "start": "anywhere -d public",
+    "production": "webpack -p"
   },
   "devDependencies": {
+    "anywhere": "^1.4.0",
     "cross-env": "^1.0.8",
     "css-loader": "^0.23.1",
     "del": "^2.2.2",
     "express": "^4.13.4",
     "extract-text-webpack-plugin": "^1.0.1",
+    "html-minifier": "^3.0.2",
     "node-sass": "^3.8.0",
     "reload": "^0.7.0",
     "resolve-url-loader": "^1.4.3",

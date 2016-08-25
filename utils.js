@@ -52,18 +52,11 @@ function getAllFiles(root, reg) {
 
 exports.getAllFiles = getAllFiles;
 
-// var list = this.getAllFiles('server/views', /^(?!.*_inc).*\.html$/);
-var swig = require('swig');
-var list = require('./server/routes/pagelist.json');
-var pathPublic = path.resolve('public');
 
-list.forEach(function(item, index) {
-  var filePath = path.resolve('server/views', item.render + '.html');
-  var content = swig.compileFile(filePath, item.data);
-  console.log('public/' + item.render)
-  createFile('public/' + item.render + '.html', content, {});
-});
-
+/* 创建文件
+ * @param root 保存的路径
+ * @param content 文件内容
+ */
 function createFile(root, content) {
   var pathArr = root.split('/');
   var dirPath = pathArr.slice(0, pathArr.length);
@@ -75,4 +68,7 @@ function createFile(root, content) {
     }
   }
   fs.writeFileSync(path.resolve(root), content, {});
-}
+};
+
+exports.createFile = createFile;
+

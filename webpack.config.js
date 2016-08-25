@@ -4,6 +4,8 @@ var webpack = require('webpack');
 var del = require('del');
 var utils = require('./utils');
 var entryMap = utils.getEntryMap();
+var pageList = require('./server/routes/pagelist.json');
+var minify = require('html-minifier').minify;
 
 // 复制插件，把 client/libs 下所有插件原封不动搬到 libs 下
 var TransferWebpackPlugin = require('transfer-webpack-plugin');
@@ -111,8 +113,42 @@ webpack(webpackConfigs, function() {
   console.log('webpack hash success...');
 
   // swig to html
-  list = utils.getAllFiles('server/views', /^(?!.*_inc).*\.html$/);
-  list.forEach(function(item, index) {
+  pageList.forEach(function(item, index) {
+
+    // 遍历并且替换文件
+    var filePath = path.resolve('server/views', item.render + '.html');
+    if (item && item.data) {
+      var slug = item.data.slug;
+      var clazz = item.data.clazz;
+
+      slug = slug != null && slug != '' ? slug + '.js' : '';
+      clazz = clazz != null && clazz != '' ? clazz + '.css' : '';
+
+      item.data.slug = hashJson[slug] != null ? hashJson[slug].replace(/.js$/, '') : hashJson[slug];
+      item.data.clazz = hashJson[clazz] != null ? hashJson[clazz].replace(/.css$/, '') : hashJson[clazz];
+
+      // common.js 文件 hash
+      item.data.commonjs = hashJson['common.js'];
+    }
+
+    // 生成文件
+    var content = swig.renderFile(filePath, item.data);
+
+    // 浏览状态不压缩 html 源m
+    if (process.env.NODE_ENV !== 'view') {
+      content = minify(content, {
+        // 去掉注释
+        removeComments: true,
+        // 去掉空格
+        collapseWhitespace: true,
+        // 保留 ' "
+        quoteCharacter: true
+      });
+    }
+    utils.createFile('public/' + item.render + '.html', content, {});
+
   });
+
+  console.log('build html success...');
 
 });

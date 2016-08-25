@@ -5,7 +5,7 @@ var swig = require('swig');
 
 // 创建服务器对象，是否开发环境，读取端口
 var app = express();
-var isDev = process.env.NODE_ENV !== 'production';
+var isProd = process.env.NODE_ENV === 'production';
 // var port = isDev ? 3000 : process.env.PORT;
 var port = 4000;
 process.env.PORT = port;
@@ -31,7 +31,20 @@ require('./server/routes/index')(app);
 var http = require('http');
 var server = http.createServer(app);
 
-if (isDev) {
+if (isProd) {
+
+  // 配置静态文件服务器
+  app.use(express.static(__dirname + '/public'));
+
+  server.listen(port, '0.0.0.0', function onStart(err) {
+    if (err) {
+      console.log(err);
+    }
+    console.info('Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
+  });
+
+} else {
+
   // 如果是开发环境，加载开发环境配置文件
   var webpack = require('webpack');
   var webpackConfig = require('./webpack.dev.config.js');
@@ -64,15 +77,5 @@ if (isDev) {
   // 重载配置
   var reload = require('reload');
   reload(server, app);
-} else {
 
-  // 配置静态文件服务器
-  app.use(express.static(__dirname + '/public'));
-
-  server.listen(port, '0.0.0.0', function onStart(err) {
-    if (err) {
-      console.log(err);
-    }
-    console.info('Listening on port %s. Open up http://0.0.0.0:%s/ in your browser.', port, port);
-  });
 }
