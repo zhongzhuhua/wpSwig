@@ -17,6 +17,30 @@ var pluginsCopy = new TransferWebpackPlugin([
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var extractCSS = new ExtractTextPlugin('./css/[name].[chunkhash:8].css');
 
+var plugins = [
+  pluginsCopy,
+  new webpack.optimize.CommonsChunkPlugin('js/common.[chunkhash:8].js'),
+  extractCSS
+];
+// 如果不是 view 则启用脚本压缩
+var uglifyPlugin = null;
+if (process.env.NODE_ENV !== 'view') {
+
+  plugins.push(
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+      output: {
+        comments: false,
+      }
+    })
+  );
+
+}
+
+
+
 // 项目配置
 var configs = {
   path: './public/',
@@ -28,11 +52,7 @@ var configs = {
 var webpackConfigs = {
 
   // 插件
-  plugins: [
-    pluginsCopy,
-    new webpack.optimize.CommonsChunkPlugin('js/common.[chunkhash:8].js'),
-    extractCSS
-  ],
+  plugins: plugins,
 
   // 脚本入口文件配置
   entry: entryMap,
@@ -78,10 +98,6 @@ var webpackConfigs = {
 // 文件 hash 值
 var hashJson = {};
 var rootPath = path.resolve('public');
-
-// 开始执行打包
-console.log('webpack begin...');
-module.exports = webpackConfigs;
 
 // 删除源打包文件
 del.sync(configs.path);

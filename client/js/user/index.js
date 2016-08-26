@@ -2,7 +2,7 @@ console.log('user index');
 
 require('./../../scss/index.scss');
 
-var gm = require('gm');
+require('gm');
 var $ = require('jquery');
 require('./../hello');
 

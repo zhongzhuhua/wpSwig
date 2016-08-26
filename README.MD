@@ -76,5 +76,11 @@
 
 
 # 通过配置 package.json 的 script: {} 设置执行的指令
-# 使用 npm dev 执行开发环境启动
-# 使用 npm start 执行生产环境启动
+# 使用 npm test 执行开发环境启动
+# 使用 npm run build 执行打包非压缩版本；然后 npm run start 执行非压缩版打包浏览
+# 使用 npm run production 执行生产压缩打包；同样可以通过 npm run start 执行打包后的浏览
+# app.js 用于启用服务
+# build.js 用于构建 public 文件，使用 node.js 来管理 webpack 打包
+# webpack.dev.config.js 是 app.js 开发时的配置
+
+

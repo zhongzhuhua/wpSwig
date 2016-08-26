@@ -7,9 +7,9 @@
   "main": "app.js",
   "scripts": {
     "test": "cross-env NODE_ENV=dev supervisor -w server,app.js,webpack.dev.config.js app",
-    "build": "cross-env NODE_ENV=view webpack",
+    "build": "cross-env NODE_ENV=view node build.js",
     "start": "anywhere -d public",
-    "production": "webpack -p"
+    "production": "node build.js"
   },
   "devDependencies": {
     "anywhere": "^1.4.0",

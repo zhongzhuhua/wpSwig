@@ -13,7 +13,9 @@ module.exports = (app) => {
     app.use(router.get(pageInfo.route, function(req, res, next) {  
       res.render(pageInfo.render + '.html', pageInfo.data);
     }));
-
+    app.use(router.get(pageInfo.route + '.html', function(req, res, next) {  
+      res.render(pageInfo.render + '.html', pageInfo.data);
+    }));
     return pageInfo;
   });
 
