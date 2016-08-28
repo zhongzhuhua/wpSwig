@@ -3,6 +3,7 @@
 # 安装 nodejs
 
 # 由于项目使用 sass 是基于 ruby 的，所以需要安装 ruby，使用 rvm 来安装 ruby
+# window 自行上网下载 ruby http://rubyinstaller.org/downloads/
 # 安装 rvm
   curl -L https://get.rvm.io | bash -s stable
 
@@ -31,6 +32,8 @@
 # 安装 sass
   [sudo] gem install sass
 # sass -v 查看 sass 版本
+
+# ===== 如果需要安装 window 版本的， github.com/zhongzhuhua study 中参考 sass.md =====
 
 # 安装 webpack 解析器和插件，如果需要其他的，图片什么的，自己安装
   npm install style-loader css-loader sass-loader 

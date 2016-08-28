@@ -13,17 +13,17 @@ function getEntryMap() {
 
   if (files != null) {
     files.forEach(function(item) {
-      var filePath = item.replace(rootPath + '/js/', '').replace('.js', '');
-      var key = filePath;
-      result[key] = ['./client/js/' + filePath];
+      var key = item.replace(rootPath, '').replace(/\\+/g, '/').replace('.js', '');
+      result[key.replace('/js/', '')] = ['./client' + key];
     });
   }
 
+  // console.log(rootPath);
   // console.log(result);
   return result;
 };
 
-// getEntryMap();
+//getEntryMap();
 exports.getEntryMap = getEntryMap;
 
 /* 读取目录下所有文件
@@ -71,4 +71,3 @@ function createFile(root, content) {
 };
 
 exports.createFile = createFile;
-
