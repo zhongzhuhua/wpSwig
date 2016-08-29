@@ -1,6 +1,7 @@
 // 公用工具类
 var path = require('path');
 var fs = require('fs');
+var os = require('os');
 var rootPath = path.resolve('client');
 
 /* 读取所有脚本，生成 webpack entry 入口文件
@@ -71,3 +72,33 @@ function createFile(root, content) {
 };
 
 exports.createFile = createFile;
+
+// 获取 ip 地址
+function getIp () {
+    var ip = '127.0.0.1';
+
+    try {
+        var iplist = require('os').networkInterfaces().en0;
+        if(iplist == null) {
+            return ip;
+        }
+
+        if(iplist.length == 1) {
+            return iplist[0].address;
+        } else {
+            for(var key in iplist) {
+                var ipModel = iplist[key];
+                if(ipModel.family == 'IPv4') {
+                    return ipModel.address;
+                }
+            }
+        }
+
+    } catch(e) {
+        console.log(e.message);
+    }
+
+    return ip;
+};
+
+exports.getIp = getIp;
