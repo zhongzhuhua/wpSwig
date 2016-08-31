@@ -11,9 +11,11 @@ module.exports = (app) => {
 
   Array.from(pageList, (pageInfo) => {
     app.use(router.get(pageInfo.route, function(req, res, next) {  
+      pageInfo.data['commonjs'] = 'common.js';
       res.render(pageInfo.render + '.html', pageInfo.data);
     }));
     app.use(router.get(pageInfo.route + '.html', function(req, res, next) {  
+      pageInfo.data['commonjs'] = 'common.js';
       res.render(pageInfo.render + '.html', pageInfo.data);
     }));
     return pageInfo;

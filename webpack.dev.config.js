@@ -9,7 +9,7 @@ for (var key in entryMap) {
 };
 
 // 第三方插件配置，需要配置 resolve.alias 使用，这个配置是为了 script src="" 不报错
-entryMap['libs/jquery'] = ['./client/libs/jquery'];
+// entryMap['libs/jquery'] = ['./client/libs/jquery'];
 
 module.exports = {
   // 插件
@@ -23,7 +23,7 @@ module.exports = {
 
   // 打包后，脚本文件输出配置
   output: {
-    filename: '[name].js', //html(或者模板)页面将引入的是这个js，这里的name就是上面entry中的K值
+    filename: 'js/[name].js', //html(或者模板)页面将引入的是这个js，这里的name就是上面entry中的K值
     path: '/public/'
   },
 
