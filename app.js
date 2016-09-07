@@ -44,6 +44,7 @@ if (isProd) {
   });
 
 } else {
+  app.use('/img', express.static(__dirname + '/client/img'));
 
   // 如果是开发环境，加载开发环境配置文件
   var webpack = require('webpack');
